@@ -1,24 +1,26 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "attackforge-events-worker",
-	"main": "src/index.js",
-	"compatibility_date": "2025-02-24",
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "attackforge-events-worker",
+  "main": "src/index.js",
+  "compatibility_date": "2025-02-24",
   "workers_dev": true,
   "preview_urls": false,
   "vars": {
-    "HOSTNAME": "<your-subdomain>.attackforge.io", // your subdomain on attackforge.io
-    "EVENTS": "vulnerability-updated,project-updated" // comma separated list of events to listen to (change it to what you need)
+    "HOSTNAME": "<your-subdomain>.attackforge.io",
+    "EVENTS": "vulnerability-updated,project-updated"
   },
   "kv_namespaces": [
     {
       "binding": "WORKER_STATE",
-      "id": "<KV_ID>" // your KV namespace ID
+      "id": "<KV_ID>"
     }
   ],
   "triggers": {
-    "crons": ["*/2 * * * *"] // cron run every 2 minutes
+    "crons": [
+      "*/2 * * * *"
+    ]
   },
-	"observability": {
-		"enabled": true
-	}
+  "observability": {
+    "enabled": true
+  }
 }
