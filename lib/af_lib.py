@@ -54,7 +54,8 @@ def put_data(url, payload):
 def send_email_af(payload):
     url = build_url('email')
     response = post_data(url, payload)
-    return response.json()
+    response_json = json.dumps(response)
+    return response_json
 
 def get_asset_id(endpoint, query):
     url = build_url(endpoint, query=query)
