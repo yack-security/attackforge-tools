@@ -14,16 +14,22 @@ HEADERS_AF = {
     'Content-Type': 'application/json',
 }
 
-# Build URL for AttackForge API
+# URL Builders
 def build_url(endpoint, query=None, skip_count=None):
-    url = f"https://{AF_BASE_URL}/api/ss/{endpoint}"
-    params = []
+    url = f"{AF_BASE_URL}/{endpoint}"
+    # Check if the endpoint already contains query parameters
+    has_params = '?' in endpoint
+
+    # Add query if present
     if query:
-        params.append(f"q={query}")
+        url += '&' if has_params else '?'
+        url += f"q={query}"
+
+    # Add skip_count if present
     if skip_count is not None:
-        params.append(f"skip={skip_count}")
-    if params:
-        url += "?" + "&".join(params)
+        url += '&' if (has_params or query) else '?'
+        url += f"skip={skip_count}"
+
     return url
 
 # verify AttackForge access
