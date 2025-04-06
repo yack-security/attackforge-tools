@@ -107,6 +107,14 @@ project_id = "your_project_id"
 data = af_lib.export_project_data(project_id)
 # print(data)
 
+# upload evidence to a vulnerability
+response = af_lib.upload_evidence(
+    "your_vuln_id",
+    "path/to/your/evidence/evidence_name.txt",
+    "evidence_name.txt",
+    "text/plain",
+)
+
 # you can see all functions in the library by looking at the lib/af_lib.py file
 ```
 
