@@ -164,7 +164,9 @@ def get_project_vulns_stats(project_id):
     url = build_url(f"project/{project_id}")
     response_temp = fetch_af(url)
     response = response_temp["project"]
+    total_assets = len(response["project_scope"])
     data = {
+        "total_assets_in_scope": total_assets,
         "total_vulnerabilities": response["project_total_vulnerabilities"],
         "open_vulnerabilities": response["project_open_vulnerabilities"],
         "closed_vulnerabilities": response["project_closed_vulnerabilities"],
