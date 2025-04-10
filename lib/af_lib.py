@@ -157,3 +157,31 @@ def verify_vuln(plugin_id, project_id):
     query = f'{{custom_tags: {{ $elemMatch: {{ name: {{ $eq: "pluginID" }}, value: {{ $eq: "{plugin_id}" }} }} }}}}'
     url = build_url("project/" + project_id + "/vulnerabilities", query)
     return verify_entity(url, "vuln")
+
+
+# get project vulns stats
+def get_project_vulns_stats(project_id):
+    url = build_url(f"project/{project_id}")
+    response_temp = fetch_af(url)
+    response = response_temp["project"]
+    data = {
+        "total_vulnerabilities": response["project_total_vulnerabilities"],
+        "open_vulnerabilities": response["project_open_vulnerabilities"],
+        "closed_vulnerabilities": response["project_closed_vulnerabilities"],
+        "critical_vulnerabilities": response["project_critical_vulnerabilities"],
+        "critical_open_vulnerabilities": response["project_critical_open_vulnerabilities"],
+        "critical_closed_vulnerabilities": response["project_critical_closed_vulnerabilities"],
+        "high_vulnerabilities": response["project_high_vulnerabilities"],
+        "high_open_vulnerabilities": response["project_high_open_vulnerabilities"],
+        "high_closed_vulnerabilities": response["project_high_closed_vulnerabilities"],
+        "medium_vulnerabilities": response["project_medium_vulnerabilities"],
+        "medium_open_vulnerabilities": response["project_medium_open_vulnerabilities"],
+        "medium_closed_vulnerabilities": response["project_medium_closed_vulnerabilities"],
+        "low_vulnerabilities": response["project_low_vulnerabilities"],
+        "low_open_vulnerabilities": response["project_low_open_vulnerabilities"],
+        "low_closed_vulnerabilities": response["project_low_closed_vulnerabilities"],
+        "info_vulnerabilities": response["project_info_vulnerabilities"],
+        "info_open_vulnerabilities": response["project_info_open_vulnerabilities"],
+        "info_closed_vulnerabilities": response["project_info_closed_vulnerabilities"],
+    }
+    return data

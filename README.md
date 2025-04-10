@@ -115,6 +115,11 @@ response = af_lib.upload_evidence(
     "text/plain",
 )
 
+# get project vulns stats
+project_id = "your_project_id"
+data = af_lib.get_project_vulns_stats(project_id)
+# print(data)
+
 # you can see all functions in the library by looking at the lib/af_lib.py file
 ```
 
